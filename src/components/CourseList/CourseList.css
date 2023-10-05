@@ -1,0 +1,30 @@
+.courseList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; 
+    margin-left: 10px;
+  }
+  
+  .courseCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    width: 150px; 
+    height: 170px;
+  }
+
+  .courseCard strong {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .courseHeader {
+    font-weight: bold;
+    font-size: 1.1em;
+    display: block; 
+    margin-bottom: 8px;
+}
