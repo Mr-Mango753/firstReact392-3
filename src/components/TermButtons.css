@@ -1,0 +1,17 @@
+.term-selector-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;  /* add some margin to top for better spacing */
+  }
+  
+  .term-btn {
+    width: 100px;  /* set a fixed width for uniformity */
+    transition: 0.3s ease-in-out; /* smooth transition for hover effects */
+  }
+  
+  .term-btn:hover {
+    transform: scale(1.05);  /* subtle grow effect on hover */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* shadow for depth perception */
+  }
+  

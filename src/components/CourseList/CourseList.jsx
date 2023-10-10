@@ -1,10 +1,10 @@
 import React from 'react';
 import './CourseList.css'
 
-const CourseList = ({ courses }) => {
+const CourseList = ({ courses, term }) => {
   return (
     <div className="courseList">
-      {Object.values(courses).map(course => (
+      {Object.values(courses).filter(course => course.term == term).map(course => (
         <div className="courseCard">
         <div key={course.number}>
             <span className="courseHeader">{course.term} CS {course.number}</span> <span>{course.title}</span>
