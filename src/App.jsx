@@ -1,6 +1,5 @@
 import React from 'react';
 import Banner from './components/Banner/Banner.jsx';
-import CourseList from './components/CourseList/CourseList.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useJsonQuery } from './utilities/fetch';
 import Terms from './components/Terms.jsx'
@@ -14,7 +13,6 @@ const FetchData = () => {
   <>
     <Banner title={data.title} />
     <Terms courses={Object.values(data.courses)} />
-    {/* <CourseList courses={Object.values(data.courses)} /> */}
   </>
   );
 }
