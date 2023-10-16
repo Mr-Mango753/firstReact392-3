@@ -23,8 +23,8 @@ const InputField = ({ name, text, course, onChange }) => {
         className="form-control"
         id={name}
         name={name}
-        value={defaultValue} // Changed from 'defaultValue' to 'value' to make it controlled
-        onChange={onChange}  // Using the onChange prop
+        value={defaultValue} 
+        onChange={onChange} 
       />
     </div>
   );
@@ -75,10 +75,8 @@ function validateMeetingTime(meets) {
 function handleInputChange(event) {
   const { name, value } = event.target;
 
-  // set the new input value
   setCourse(prev => ({ ...prev, [name]: value }));
 
-  // validate the field
   if (name === "title") {
     setErrors(prev => ({ ...prev, title: validateTitle(value) }));
   } else if (name === "meets") {
