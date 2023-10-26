@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, onValue, ref, update } from 'firebase/database';
+import { getDatabase, onValue, ref, update, get } from 'firebase/database';
 import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -99,4 +99,10 @@ export const AuthButtons = () => {
       }
     </div>
   );
+};
+
+export const isAdmin = async (uid) => {
+  const adminRef = ref(database, `admin/${uid}`);
+  const snapshot = await get(adminRef);
+  return snapshot.val() === true;
 };

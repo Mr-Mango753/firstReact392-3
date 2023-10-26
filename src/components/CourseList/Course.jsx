@@ -1,10 +1,23 @@
-import React from 'react';
-import './CourseList.css'
-import { useAuthState } from '../../utilities/firebase'; 
-import { Link } from 'react-router-dom'; 
+import React, { useState, useEffect } from 'react';
+import './CourseList.css';
+import { useAuthState, isAdmin } from '../../utilities/firebase';
+import { Link } from 'react-router-dom';
+
 
 const Course = ({ course, selected, toggleSelected }) => {
   const user = useAuthState();
+  const [isAdminUser, setIsAdminUser] = useState(false);
+
+  useEffect(() => {
+    const checkAdminStatus = async () => {
+      if (user) {
+        const isAdminResult = await isAdmin(user.uid);
+        setIsAdminUser(isAdminResult);
+        console.log("is admin", isAdminResult);
+      }
+    };
+    checkAdminStatus();
+  }, [user]);
 
   return (
     <div 
@@ -16,7 +29,7 @@ const Course = ({ course, selected, toggleSelected }) => {
         <hr />
         <span>{course.meets}</span>
 
-        {user && (
+        {isAdminUser && (
           <Link 
             className="btn btn-primary" 
             to={`/edit-course/${course.term[0]}${course.number}`}
