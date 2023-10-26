@@ -71,7 +71,7 @@ const CourseForm = () => {
         await update(course);
         navigate("/");
       } catch (error) {
-        console.error("Error updating course:", error);
+        console.error("can't update course -- ", error);
       }
     }
   };

@@ -1,9 +1,11 @@
 import React from 'react';
 import './CourseList.css'
+import { useAuthState } from '../../utilities/firebase'; 
 import { Link } from 'react-router-dom'; 
 
-
 const Course = ({ course, selected, toggleSelected }) => {
+  const user = useAuthState();
+
   return (
     <div 
         className={`courseCard card-body${selected.includes(course) ? ' selected' : ''}`} 
@@ -13,19 +15,22 @@ const Course = ({ course, selected, toggleSelected }) => {
         <span>{course.title}</span>
         <hr />
         <span>{course.meets}</span>
-      <Link 
-    className="btn btn-primary" 
-    to={`/edit-course/${course.term[0]}${course.number}`}
-    onClick={(e) => {
-      e.stopPropagation();
-      const element = document.getElementById("bottom");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }}
->
-    Edit
-</Link>
+
+        {user && (
+          <Link 
+            className="btn btn-primary" 
+            to={`/edit-course/${course.term[0]}${course.number}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              const element = document.getElementById("bottom");
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          >
+            Edit
+          </Link>
+        )}
 
     </div>
   );
