@@ -20,7 +20,7 @@ const Course = ({ course, selected, toggleSelected }) => {
   }, [user]);
 
   return (
-    <div 
+    <div data-cy="course"
         className={`courseCard card-body${selected.includes(course) ? ' selected' : ''}`} 
         onClick={() => toggleSelected(course)}
     >

@@ -16,6 +16,7 @@ const MenuButton = ({term, selection, setSelection}) => (
         borderRadius: '4px',
       }} 
       htmlFor={term}
+      data-cy={term}
     >
       { term }
     </label>
