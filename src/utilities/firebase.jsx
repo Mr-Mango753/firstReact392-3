@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, onValue, ref, update, get } from 'firebase/database';
-import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { getDatabase, onValue, ref, update, get, connectDatabaseEmulator } from 'firebase/database';
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, connectAuthEmulator, signInWithCredential } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyC3SHbiF6WUXL-YTyRCTvf9qSE2MXdPB9Q",
@@ -106,3 +106,14 @@ export const isAdmin = async (uid) => {
   const snapshot = await get(adminRef);
   return snapshot.val() === true;
 };
+
+if (!globalThis.EMULATION && import.meta.env.MODE === 'development') {
+  connectAuthEmulator(auth, "http://127.0.0.1:9099");
+  connectDatabaseEmulator(database, "127.0.0.1", 9000);
+
+  signInWithCredential(auth, GoogleAuthProvider.credential(
+    '{"sub": "qEvli4msW0eDz5mSVO6j3W7i8w1k", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
+  ));
+  // set flag to avoid connecting twice, e.g., because of an editor hot-reload
+  globalThis.EMULATION = true;
+}
